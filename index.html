@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Amanda Bloomfield Resume</title>
+<style>
+/* Imports */
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+/* Vars */
+/* Functions */
+/* Utilities */
+.fill-100 {
+  height: 100%;
+  width: 100%;
+}
+
+.fill-100h {
+  height: 100%;
+}
+
+.fill-100w {
+  width: 100%;
+}
+
+/* Paddings-margins */
+.no-padding {
+  padding: 0;
+}
+
+.no-padding-left {
+  padding-left: 0;
+}
+
+.no-padding-right {
+  padding-right: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+/* Box sizing rules */
+* {
+  box-sizing: border-box;
+}
+*::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+/* Inherit fonts for inputs and buttons */
+button, input, optgroup, select, textarea {
+  font: inherit;
+}
+
+/* Remove highlighting elements on focus events */
+*:focus {
+  outline: none;
+}
+
+/* Set core body defaults */
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  text-rendering: optimizeSpeed;
+  background-color: white;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: OldLace;
+  overflow: hidden;
+}
+
+.header > span {
+  display: block;
+  text-align: center;
+}
+.header .title {
+  font-family: Lobster;
+  font-size: 4.4444444444rem;
+  white-space: nowrap;
+  color: #264040;
+  margin-bottom: 0.8rem;
+}
+.header .subtitle {
+  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+  color: #aa7d4f;
+  margin-bottom: 3.3333333333rem;
+}
+
+.scene {
+  position: relative;
+  width: 20rem;
+  aspect-ratio: 1;
+  min-height: 20rem;
+  clip-path: circle(50% at 50% 50%);
+  cursor: pointer;
+}
+
+.sky__sector {
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.sky__sector--day {
+  clip-path: inset(0 0 50% 0);
+  background-color: #FFDF00;
+  box-shadow: inset 0 0 0 2.5rem #E52B31, inset 0 0 0 5rem #EA5C34, inset 0 0 0 7.5rem #F39924;
+}
+.sky__sector--night {
+  clip-path: inset(50% 0 0 0);
+  background-color: #4C539B;
+  box-shadow: inset 0 0 0 2.5rem #3E3968, inset 0 0 0 5rem #3F428C, inset 0 0 0 7.5rem #4C539B;
+}
+
+.land {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.land .hill {
+  position: absolute;
+  width: 40rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: #257145;
+  color: #1C9648;
+}
+.land .hill--left {
+  transform: translate(-81%, -3%);
+}
+.land .hill--main {
+  transform: translate(-50%, -2%);
+  box-shadow: inset 0 0 0 0.5rem;
+  overflow: hidden;
+}
+.land .hill--main .road {
+  width: 40rem;
+  aspect-ratio: 1;
+  background-color: #B68757;
+  transform: translate(18%, -18%) scale(0.3);
+  clip-path: url(#road-path);
+}
+.land .hill--right {
+  transform: translate(-19%, -3%);
+}
+
+.transition, .land .hill, .land .hill--main .road {
+  transform-origin: 10rem 10rem;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.sky.transition--dawn {
+  animation-name: sky-dawn;
+}
+.sky.transition--sunset {
+  animation-name: sky-sunset;
+}
+
+.land.transition--dawn > .hill {
+  animation-name: land-dawn;
+}
+.land.transition--dawn .road {
+  animation-name: road-dawn;
+}
+.land.transition--sunset > .hill {
+  animation-name: land-sunset;
+}
+.land.transition--sunset .road {
+  animation-name: road-sunset;
+}
+
+.celestial-object {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background-color: #D6EDFC;
+}
+.celestial-object--small {
+  width: 0.3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.celestial-object--medium {
+  width: 0.6rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.celestial-object--big {
+  width: 1rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.celestial-object--moon {
+  overflow: hidden;
+  width: 5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.celestial-object--moon:after {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  content: "";
+  background-color: #48AFE1;
+  width: 4rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.celestial-object:nth-child(1) {
+  top: 62%;
+  left: 89%;
+}
+.celestial-object:nth-child(2) {
+  top: 82%;
+  left: 70%;
+}
+.celestial-object:nth-child(3) {
+  top: 60%;
+  left: 60%;
+}
+.celestial-object:nth-child(4) {
+  top: 92%;
+  left: 56%;
+}
+.celestial-object:nth-child(5) {
+  top: 75%;
+  left: 53%;
+}
+.celestial-object:nth-child(6) {
+  top: 76%;
+  left: 32%;
+}
+.celestial-object:nth-child(7) {
+  top: 58%;
+  left: 22%;
+}
+.celestial-object:nth-child(8) {
+  top: 71%;
+  left: 10%;
+}
+
+@keyframes sky-dawn {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+@keyframes sky-sunset {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes land-dawn {
+  from {
+    background-color: #257145;
+    color: #1C9648;
+  }
+  to {
+    background-color: #296F81;
+    color: #2798AC;
+  }
+}
+@keyframes land-sunset {
+  from {
+    background-color: #296F81;
+    color: #2798AC;
+  }
+  to {
+    background-color: #257145;
+    color: #1C9648;
+  }
+}
+@keyframes road-dawn {
+  from {
+    background-color: #B68757;
+  }
+  to {
+    background-color: #D6EDFC;
+  }
+}
+@keyframes road-sunset {
+  from {
+    background-color: #D6EDFC;
+  }
+  to {
+    background-color: #B68757;
+  }
+}
+</style>
+</head>
+<body>
+<div class="main">
+  <div class="header"> <span class="title">Coming Soon</span><span class="subtitle">Click image to see animation</span></div>
+  <div class="scene" onclick="dayNightTransition()">
+    <div class="sky transition" id="complete_sky">
+      <div class="sky__sector sky__sector--day"></div>
+      <div class="sky__sector sky__sector--night">
+        <div class="celestial-object celestial-object--small"></div>
+        <div class="celestial-object celestial-object--big"></div>
+        <div class="celestial-object celestial-object--big"></div>
+        <div class="celestial-object celestial-object--small"></div>
+        <div class="celestial-object celestial-object--medium"></div>
+        <div class="celestial-object celestial-object--moon"></div>
+        <div class="celestial-object celestial-object--small"></div>
+        <div class="celestial-object celestial-object--small"></div>
+      </div>
+    </div>
+    <div class="land" id="all_hills">
+      <div class="hill hill--left"></div>
+      <div class="hill hill--right"></div>
+      <div class="hill hill--main">
+        <div class="road"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<svg width="0" height="0">
+  <defs>
+    <clippath id="road-path" clipPathUnits="objectBoundingBox" transform="scale(0.00532, 0.00461)">
+      <path d="M93,0.212044702 C73.3847599,9.73603306 62.1136694,22.3407698 59.1867285,38.0262549 C54.7963173,61.5544825 117.514265,110.662106 115.077647,142.902819 C113.453235,164.396627 75.171673,188.830394 0.232959969,216.20412 L165.826031,216.20412 C195.502126,172.312487 194.68846,134.977854 163.385034,104.20022 C116.429895,58.033768 93,50.5664399 85.9991574,38.0262549 C81.331929,29.6661315 86.857323,17.0613948 102.575339,0.212044702 L93,0.212044702 Z"></path>
+    </clippath>
+  </defs>
+</svg>
+<script>
+const dayNightTransition = () => {
+	const sky = document.getElementById("complete_sky");
+	const hills = document.getElementById("all_hills");
+	if (Array.from(sky.classList).includes("transition--dawn")) {
+		sky.classList.remove("transition--dawn");
+		sky.classList.add("transition--sunset");
+		hills.classList.remove("transition--dawn");
+		hills.classList.add("transition--sunset");
+	} else {
+		sky.classList.remove("transition--sunset");
+		sky.classList.add("transition--dawn");
+		hills.classList.remove("transition--sunset");
+		hills.classList.add("transition--dawn");
+	}
+};
+</script>
+</body>
+</html>
